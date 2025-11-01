@@ -1,31 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Upload Successful</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(135deg, #00c6ff 20%, #f4f8fb 100%);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    .container { max-width: 700px; margin-top: 100px; }
-    .card { border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); border: none; }
-    .btn-primary { background: linear-gradient(90deg, #007bff, #00c6ff); border: none; }
-  </style>
-</head>
-<body>
-
-<div class="container">
-  <div class="card p-5 text-center">
-    <h2 class="text-success mb-3">✅ File Uploaded Successfully!</h2>
-    <p class="text-muted">Your file <strong>{{ filename }}</strong> has been uploaded.</p>
-    <hr>
-    <a href="/sign/{{ filename }}" class="btn btn-primary px-4">🔏 Sign Document</a>
-    <a href="/" class="btn btn-outline-secondary px-4 ms-2">🏠 Home</a>
-  </div>
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+        <div class="card bg-white">
+            <h4 class="text-success mb-3">File Signed Successfully!</h4>
+            <p>Your document has been digitally signed using RSA encryption.</p>
+            <a href="/static/uploads/{{ signed_file }}" class="btn btn-outline-success mt-3">Download Signature</a>
+            <a href="/" class="btn btn-outline-primary mt-3">Go Back</a>
+        </div>
+    </div>
 </div>
-
-</body>
-</html>
+{% endblock %}

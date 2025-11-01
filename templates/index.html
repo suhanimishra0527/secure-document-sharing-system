@@ -1,76 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Secure Document Sharing System</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(135deg, #007bff 20%, #f4f8fb 100%);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #333;
-      min-height: 100vh;
-    }
-    .container {
-      max-width: 700px;
-      margin-top: 80px;
-    }
-    .card {
-      border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      border: none;
-    }
-    .btn-primary {
-      background: linear-gradient(90deg, #007bff, #00c6ff);
-      border: none;
-    }
-    .btn-outline-success {
-      border: 2px solid #00b894;
-      color: #00b894;
-    }
-    .btn-outline-success:hover {
-      background-color: #00b894;
-      color: #fff;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 40px;
-      color: #f0f0f0;
-      font-size: 0.9rem;
-    }
-  </style>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card bg-white">
+            <h4 class="mb-3 text-center text-primary">Upload Document for Signing</h4>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">Choose a file</label>
+                    <input class="form-control" type="file" name="file" required>
+                </div>
+                <div class="d-grid">
+                    <button class="btn btn-outline-success" type="submit">Sign Document</button>
+                </div>
+            </form>
+        </div>
 
-<div class="container">
-  <div class="card p-5">
-    <div class="text-center mb-4">
-      <h2 class="text-primary fw-bold">🔐 Secure Document Sharing System</h2>
-      <p class="text-muted">Upload, digitally sign, and verify your documents securely using RSA & SHA-256</p>
+        <div class="card bg-white mt-4">
+            <h4 class="mb-3 text-center text-primary">Verify Signed Document</h4>
+            <form action="/verify" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">Upload Original File</label>
+                    <input class="form-control" type="file" name="file" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Upload Signature File (.sig)</label>
+                    <input class="form-control" type="file" name="signature" required>
+                </div>
+                <div class="d-grid">
+                    <button class="btn btn-outline-primary" type="submit">Verify Signature</button>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <form action="/upload" method="post" enctype="multipart/form-data">
-      <div class="mb-3">
-        <label for="file" class="form-label fw-semibold">Select Document:</label>
-        <input type="file" name="file" id="file" class="form-control" required>
-      </div>
-
-      <div class="text-center mt-4">
-        <button type="submit" class="btn btn-primary px-4">Upload File</button>
-      </div>
-    </form>
-
-    <hr class="my-4">
-    <div class="text-center">
-      <a href="/verify" class="btn btn-outline-success px-4">🧩 Go to Verify Page</a>
-    </div>
-  </div>
-
-  <div class="footer">
-    © 2025 Secure Document Sharing System | Flask & RSA
-  </div>
 </div>
-
-</body>
-</html>
+{% endblock %}

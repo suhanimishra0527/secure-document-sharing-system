@@ -1,13 +1,17 @@
-{% extends "base.html" %}
-{% block content %}
-<h2>📤 Shared Document</h2>
-
-<p>Here are the downloadable files:</p>
-
-<a class="btn" href="/download/{{ file }}">⬇️ Download Original File</a>
-<a class="btn btn-green" href="/download/{{ sig }}">⬇️ Download Signature File</a>
-
-<hr>
-
-<p>✅ Anyone with this link can download the files securely.</p>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Share Document</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Share Document</h1>
+    <p>Share this link to download your signed document:</p>
+    <a href="{{ share_url }}" class="link">{{ share_url }}</a>
+    <br><br>
+    <a href="{{ url_for('index') }}" class="btn">Go Home</a>
+  </div>
+</body>
+</html>
