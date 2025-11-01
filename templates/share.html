@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>📤 Shared Document</h2>
+
+<p>Here are the downloadable files:</p>
+
+<a class="btn" href="/download/{{ file }}">⬇️ Download Original File</a>
+<a class="btn btn-green" href="/download/{{ sig }}">⬇️ Download Signature File</a>
+
+<hr>
+
+<p>✅ Anyone with this link can download the files securely.</p>
+{% endblock %}
